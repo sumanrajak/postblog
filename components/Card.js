@@ -8,7 +8,7 @@ import EditIcon from '@rsuite/icons/Edit';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { formatInstagramTimestamp } from '@utils/helperFunction';
-import CommentBox from './commentBox';
+import CommentBox from './CommentBox';
 
 
 const Card = ({ data ,handelDeltPost,type}) => {

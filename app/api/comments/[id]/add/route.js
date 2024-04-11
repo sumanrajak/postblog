@@ -1,7 +1,7 @@
 
 
 import { connectToDb } from '@utils/database';
-import Post from '@models/Post';
+import Post from '@models/post';
 import Comment from '@models/comments';
 
 import mongoose from "mongoose";
