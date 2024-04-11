@@ -3,8 +3,8 @@ import Post from '@models/Post';
 export const GET = async (request,{params}) => {
     try {
         await connectToDb();
-        const prompts = await Post.find({creator:params.id}).populate('creator');
-        return new Response(JSON.stringify(prompts), {
+        const posts = await Post.find({creator:params.id}).populate('creator');
+        return new Response(JSON.stringify(posts), {
             status: 200
         })
     } catch (error) {

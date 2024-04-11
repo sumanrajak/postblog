@@ -39,7 +39,7 @@ const UserProfile = ({ params }) => {
   return (
     <div style={{ display: "flex", justifyContent: "center" }} className="bg_color">
       {
-        !userInfo || posts.length == 0 ? <div>
+        !userInfo  ? <div>
           <Placeholder.Paragraph rows={8} />
           <Loader backdrop content="loading..." vertical />
         </div> : <Profile

@@ -7,13 +7,18 @@ import TrashIcon from '@rsuite/icons/Trash';
 import EditIcon from '@rsuite/icons/Edit';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { formatInstagramTimestamp } from '@utils/helperFunction';
+import CommentBox from './commentBox';
+
 
 const Card = ({ data ,handelDeltPost,type}) => {
   const { data: session } = useSession();
   const  router=useRouter()
-
+  const [open, setOpen] = React.useState(false);
+  const [overflow, setOverflow] = React.useState(true);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 const editpost=()=>{
-  console.log(data);
   router.push(`/updatePost/${data?._id}`)
 }
 const goToProfile=(id)=>{
@@ -21,12 +26,16 @@ const goToProfile=(id)=>{
 }
 
   return (
-    <section className="card blue">
+    <section className="card ">
       <div style={{ display: "flex", flexDirection: "colomn", justifyContent: "space-between", alignItems: "center" }}>
         <div className='user_bar'>
           <Image className="avatar" src={data?.creator?.image} height={40} width={40} onClick={()=>{goToProfile(data?.creator._id)}}
             alt="user" />
-          <p style={{cursor:"pointer"}} onClick={()=>{goToProfile(data?.creator._id)}}>{data?.creator?.username}</p>
+            <div>
+            <p style={{cursor:"pointer"}} onClick={()=>{goToProfile(data?.creator._id)}}>{data?.creator?.username}</p>
+            <p style={{cursor:"pointer", margin:"0",fontSize:"xx-small"}} >{formatInstagramTimestamp(data?.createdAt)}</p>
+
+            </div>
         </div>
         {data?.creator?._id == session?.user.id && type=="editable" ? <div style={{ display: "flex", flexDirection: "colomn", justifyContent: "space-between", alignItems: "center", width: "40px", marginRight: "10px" }}>
           <EditIcon style={{  cursor:"pointer"}}  onClick={editpost}></EditIcon>
@@ -40,13 +49,14 @@ const goToProfile=(id)=>{
       <p className="card_title">{data?.caption}</p>
       <p className="card_content" style={{ opacity: "0.6" }}>{data?.tags}</p>
       <div  >
-        <Badge content={9} className="card_content">
+        {/* <Badge content={9} className="card_content">
           <Button>Like</Button>
+        </Badge> */}
+        <Badge content={data?.comments?.length} className="card_content">
+          <Button onClick={handleOpen}> View Comments</Button>
         </Badge>
-
-        <Badge content={10} className="card_content">
-          <Button>Comments</Button>
-        </Badge>
+        <CommentBox overflow={overflow} open={open} handleClose={handleClose}  id={data?._id}></CommentBox>
+       
       </div>
     </section>
   )

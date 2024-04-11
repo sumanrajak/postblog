@@ -3,7 +3,7 @@ import { connectToDb } from "@utils/database"
 
 export const POST = async (req, res) => {
     const { caption, imageUrl, tags, userId } = await req.json()
-    let comments = ''
+    let comments = []
     try {
         await connectToDb()
         const newPost = new Post({

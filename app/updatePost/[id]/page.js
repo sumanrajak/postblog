@@ -45,7 +45,7 @@ const UpdatePage = ({ params }) => {
             const response = await fetch(`/api/post/${params.id}`)
 
             const data = await response.json()
-
+             console.log(data);
              setPost({
                 caption:data.caption,
                 tags:data.tags,

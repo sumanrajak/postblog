@@ -20,6 +20,7 @@ const [serchedText, setserchedText] = useState("")
       const response = await fetch('/api/post');
       const data = await response.json();
       // setPosts(data);
+
       setposts(data)
     }
       

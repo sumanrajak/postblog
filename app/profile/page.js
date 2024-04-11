@@ -51,7 +51,7 @@ const ProfilePage = () => {
   return (
     <div style={{ display: "flex", justifyContent: "center" }} className="bg_color">
       {
-        !session || posts.length == 0 ? <div>
+        !session ? <div>
           <Placeholder.Paragraph rows={8} />
           <Loader backdrop content="loading..." vertical />
         </div> : <Profile

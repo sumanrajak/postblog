@@ -5,7 +5,7 @@ import Post from '@models/Post';
 export const GET = async (request,{params}) => {
     try {
         await connectToDb();
-        const post = await Post.findById(params.id).populate('creator');
+        const post = await Post.findById(params.id).populate('creator');;
         if(!post){ return new Response("post dosent exist", {
             status: 404
         })}
