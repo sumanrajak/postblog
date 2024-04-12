@@ -22,22 +22,21 @@ const Search = ({serchedText,
         const fetchPosts = async () => {
             const response = await fetch('/api/users');
             const data = await response.json();
-            // setPosts(data);
             setusers(data)
-            // console.log("user", data);
+            console.log("user", data);
         }
 
         fetchPosts();
     }, []);
     return (
-        <div>
+        <div style={{ maxHeight: "100%", overflowY: "auto" }}>
             <InputGroup inside style={styles}>
                 <Input placeholder='Search' value={serchedText} onChange={(e)=>setserchedText(e)} />
                 <InputGroup.Button>
                     <SearchIcon />
                 </InputGroup.Button>
             </InputGroup>
-            <div className="creatorList">
+            <div className="creatorList" >
                 <p>Populer Creators</p>
 
 
@@ -62,6 +61,7 @@ const Search = ({serchedText,
                     ))
 
                 }
+                
             </div >
 
         </div>

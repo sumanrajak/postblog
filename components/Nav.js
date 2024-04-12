@@ -38,7 +38,7 @@ const Nav = () => {
         session?.user ? <div className='cent'>
           <div className='navitems'                 style={{padding:"5px 10px"}}
 >
-            <Link href='./createPost' className='link'>
+            <Link href='/createPost' className='link' style={{ color: "white",textDecoration:"none" }}>
               CREATE
             </Link>
           </div>
@@ -57,7 +57,7 @@ const Nav = () => {
               <Dropdown.Separator />
               {/* <Dropdown.Item>Your profile</Dropdown.Item>
               <Dropdown.Item>Your stars</Dropdown.Item> */}
-                <Dropdown.Item><Link href='./profile' className='link' > <div style={{color:"black",textDecoration:"none"}}>Your profile</div> </Link> </Dropdown.Item>
+                <Dropdown.Item><Link href='/profile' className='link' > <div style={{color:"black",textDecoration:"none"}}>Your profile</div> </Link> </Dropdown.Item>
               <Dropdown.Separator />
               <Dropdown.Item>Help</Dropdown.Item>
               <Dropdown.Item>Settings</Dropdown.Item>

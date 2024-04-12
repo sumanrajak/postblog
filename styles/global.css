@@ -312,6 +312,8 @@ input  {
 
 .creatorList{
   padding: 5%;
+  overflow: hidde ;
+    height: 100%;
 }
 
 .mobile_srch{

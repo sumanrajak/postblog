@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 
 const UserProfile = ({ params }) => {
   const [userInfo, setuserInfo] = useState([])
+  const [isLoading, setisLoading] = useState(true)
   const [posts, setposts] = useState([])
   const { data: session } = useSession();
   const router=useRouter()
@@ -17,21 +18,24 @@ const UserProfile = ({ params }) => {
   const handelDeltPost = (id) => {
 
   }
+
+  useEffect(()=>{
+if(session?.user?.id===params.id)router.push("/profile");
+  },[session])
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchData = async () => {
+      const userresponse = await fetch(`/api/users/${params.id}`)
+      const userdata = await userresponse.json();
+      setuserInfo({ user: { ...userdata, name: userdata.username } })
       const response = await fetch(`/api/users/${params.id}/post`)
       const data = await response.json();
       setposts(data)
-      // console.log("posts", data);
+      setisLoading(false)
+
     }
-    const fetchUser = async () => {
-      const response = await fetch(`/api/users/${params.id}`)
-      const data = await response.json();
-      setuserInfo({ user: { ...data, name: data.username } })
-      // console.log("user", data);
-    }
-    fetchUser()
-    fetchPosts();
+   
+    fetchData();
+
   }, []);
 
  
@@ -39,7 +43,7 @@ const UserProfile = ({ params }) => {
   return (
     <div style={{ display: "flex", justifyContent: "center" }} className="bg_color">
       {
-        !userInfo  ? <div>
+        isLoading  ? <div>
           <Placeholder.Paragraph rows={8} />
           <Loader backdrop content="loading..." vertical />
         </div> : <Profile
@@ -50,6 +54,7 @@ const UserProfile = ({ params }) => {
           posts={posts}
         />
       }
+      {userInfo?<></>:<>User Not found</>}
 
     </div>
   )

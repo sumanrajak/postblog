@@ -11,6 +11,8 @@ const ProfilePage = () => {
   const router = useRouter()
   const { data: session } = useSession();
   const [posts, setposts] = useState([])
+  const [isLoading, setisLoading] = useState(true)
+
   const handelUpdatePost = () => {
 
 
@@ -42,7 +44,7 @@ const ProfilePage = () => {
       const response = await fetch(`/api/users/${session.user.id}/post`)
       const data = await response.json();
       setposts(data)
-      // console.log("posts", data);
+      setisLoading(false)
     }
 
     if (session?.user.id) fetchPosts();
@@ -51,7 +53,7 @@ const ProfilePage = () => {
   return (
     <div style={{ display: "flex", justifyContent: "center" }} className="bg_color">
       {
-        !session ? <div>
+        isLoading ? <div>
           <Placeholder.Paragraph rows={8} />
           <Loader backdrop content="loading..." vertical />
         </div> : <Profile

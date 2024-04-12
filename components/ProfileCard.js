@@ -6,7 +6,7 @@ const ProfileCard = ({profileInfo,post,follower,type}) => {
   return (<div className='ProfileCard'>
  <div id="card">
   <Image id="avatar" src={profileInfo?.user?.image} height={40} width={40}
-          alt="user" />
+          alt="userimage" />
   <div id="info" style={{height:type=="myprofile"?"50%":"100%"}}>
     <p id="name">{profileInfo?.user?.name}</p>
     <p id="activity">{profileInfo?.user?.email}</p>

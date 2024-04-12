@@ -17,6 +17,10 @@ const Profile = ({profileInfo,handelDeltPost,handelUpdatePost,posts,type}) => {
           <Card data={e} key={i} handelDeltPost={handelDeltPost} type={"editable"}  />
         ))
         }
+
+        {
+          posts?.length==0?<>no post yet</>:<></>
+        }
       </div>
 
     </div>
