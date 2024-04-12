@@ -5,11 +5,15 @@ import "@uploadthing/react/styles.css";
 
 export const metadata= {
     title:"postblog",
-    description:"bloading application"
+    description:"bloading application",
+    icons: {
+      icon: '/favicon.ico', 
+    },
 }
 const RootLayout = ( {children}) => {
   return (
     <html lang="en">
+     
         <body  suppressHydrationWarning={true} >
         <Provider>
 

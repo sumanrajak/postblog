@@ -3,7 +3,7 @@ import User from '@models/user';
 export const GET = async (request) => {
     try {
         await connectToDb();
-        const users = await User.find()
+        const users = await User.find({})
         return new Response(JSON.stringify(users), {
             status: 200
         })
