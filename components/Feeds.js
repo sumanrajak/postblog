@@ -23,11 +23,11 @@ const Feeds = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setPosts(data);
+        setposts(data);
       } catch (error) {
         // Show an alert if there's an error fetching the posts
         alert('An error occurred while fetching posts. Please reload the page.');
-        // reloadPage(); // Reload the page
+        reloadPage(); // Reload the page
       }
     }
 
